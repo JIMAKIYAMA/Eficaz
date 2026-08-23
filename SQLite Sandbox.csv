@@ -1,0 +1,4 @@
+"name","sql"
+"DUAL","CREATE TABLE DUAL(DUMMY CHAR(1)NOT NULL PRIMARY KEY)"
+"imoveis","CREATE TABLE imoveis (     id INTEGER PRIMARY KEY AUTOINCREMENT,     logradouro TEXT NOT NULL,     tipo_logradouro TEXT,     bairro TEXT,     cidade TEXT NOT NULL,     cep TEXT,     tipo TEXT,     valor REAL,     data_aquisicao TEXT )"
+"sqlite_sequence","CREATE TABLE sqlite_sequence(name,seq)"

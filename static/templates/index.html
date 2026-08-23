@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Get-it</title>
+    </head>
+
+    <body>
+
+        {imagem}
+        <p>Como o Post-it, mas com outro verbo</p>
+        <form action="/submit" method="POST">
+            <label for="titulo">Titulo </label>
+            <input id="titulo_input" type="text" name="titulo_nome">
+            <br>
+            <label for="detalhe">Detalhe</label>
+            <input id="detalhe_input" type="text" name="detalhe_nome">
+            <input type="submit">
+        </form>
+        <ul>
+            {notes}
+        </ul>
+    </body>
+<html>
