@@ -11,8 +11,8 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submitar():
-    titulo = request.form.get('titulo_nome')
-    detalhe = request.form.get('detalhe_nome')
+    titulo = request.form.get('titulo')
+    detalhe = request.form.get('detalhes')
     views.submit(titulo, detalhe)
     return redirect('/')
 

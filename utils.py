@@ -4,7 +4,6 @@ from flask import render_template_string
 
 def load_data(html):
     caminho = os.path.join(os.path.dirname(__file__), "static", "data", html)
-    print(f"caminho ========== {caminho}")
     with open(caminho, 'r', encoding='utf-8') as file:
         dados_json = json.load(file)
 
