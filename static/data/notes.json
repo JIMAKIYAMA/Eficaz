@@ -34,5 +34,9 @@
     {
         "titulo": "ola",
         "detalhes": "mundo"
+    },
+    {
+        "titulo": "ol\u00e1",
+        "detalhes": "mundo"
     }
 ]

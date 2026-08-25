@@ -2,19 +2,20 @@
     <head>
         <meta charset="UTF-8">
         <title>Get-it</title>
+        <link rel="stylesheet" href='/static/getit.css'>
     </head>
-
     <body>
-
-        {imagem}
-        <p>Como o Post-it, mas com outro verbo</p>
-        <form action="/submit" method="POST">
-            <label for="titulo">Titulo </label>
-            <input id="titulo" type="text" name="titulo">
-            <label for="detalhe">Detalhe</label>
-            <input id="detalhes" type="text" name="detalhes">
-            <input type="submit">
-        </form>
+        <header class="header">
+            <div> {imagem} </div>
+            <p>Como o Post-it, mas com outro verbo</p>
+        </header>
+            <form class="caixinha" action="/submit" method="POST">
+                <label for="titulo">Titulo</label>
+                <input id="titulo" type="text" name="titulo">
+                <label for="detalhe">Detalhe</label>
+                <input id="detalhes" type="text" name="detalhes">
+                <input type="submit">
+            </form>
         <ul>
             {notes}
         </ul>

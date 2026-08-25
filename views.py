@@ -11,7 +11,7 @@ def index():
     for template in lista_li:
         template_inicial += template
 
-    leitura_imagem = f"<img src = {url_for('static', filename='img/logo-getit.png')}>"
+    leitura_imagem = f"<img class='img' src = {url_for('static', filename='img/logo-getit.png')}>"
     return load_template('index.html').format(imagem=leitura_imagem, notes=template_inicial)
 
 def submit(titulo, detalhe):
