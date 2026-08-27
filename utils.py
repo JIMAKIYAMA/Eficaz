@@ -3,14 +3,14 @@ import os
 import sqlite3
 
 def criar_banco_de_dados():
-    con = sqlite3.connect('static/data/banco.db')
+    con = sqlite3.connect('banco.db')
     cursor = con.cursor()
     cursor.execute("CREATE TABLE banco (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT)")
     con.commit()
     return con
 
 def inserir(dados):
-    con = sqlite3.connect('static/data/banco.db')
+    con = sqlite3.connect('banco.db')
     cursor = con.cursor()
     cursor.execute("""
     INSERT INTO banco (title, content) VALUES(?,?)
@@ -18,21 +18,21 @@ def inserir(dados):
     con.commit()
 
 def pegar_dados():
-    con = sqlite3.connect('static/data/banco.db')
+    con = sqlite3.connect('banco.db')
     cursor = con.cursor()
     res = cursor.execute("SELECT id, title, content FROM banco")
 
     return res.fetchall()
 
 def deletar(id):
-    con = sqlite3.connect('static/data/banco.db')
+    con = sqlite3.connect('banco.db')
     cursor = con.cursor()
     cursor.execute('DELETE FROM banco WHERE id = ?',(id,))
     con.commit()
     con.close()
 
 def editar(titulo, detalhe, id):
-    con = sqlite3.connect('static/data/banco.db')
+    con = sqlite3.connect('banco.db')
     cursor = con.cursor()
     cursor.execute(
     """

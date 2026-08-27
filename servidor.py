@@ -19,8 +19,7 @@ def submitar():
 
 @app.route('/delete', methods=['POST'])
 def delete():
-    print(request.form.get('delete_button'))
-    id = request.form.get('delete_button')
+    id = request.form.get('id')
     if id:
         deletar(id)
     return redirect('/')
@@ -29,7 +28,6 @@ def delete():
 def editar_(id):
     title = request.form.get('title')
     content = request.form.get('content')
-    print('<<<<<<<<<<<<<<', title, content, id)
     if title and content and id:
         editar(title, content, id)
         return redirect('/')
