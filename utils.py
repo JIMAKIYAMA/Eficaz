@@ -13,7 +13,7 @@ def inserir(dados):
 
 def pegar_dados():
     con = conectar()
-    res = con.cursor().execute("SELECT id, title, content FROM note").fetchall()
+    res = con.cursor().execute("SELECT * FROM note ORDER BY favoritado DESC").fetchall()
     con.close()
     return res
 
@@ -23,6 +23,7 @@ def pegar_nota(id):
         "SELECT id, title, content FROM note WHERE id = ?", (id,)
     ).fetchone()
     con.close()
+    res = ordenar()
     return res
 
 def deletar(id):
@@ -40,6 +41,15 @@ def editar(titulo, detalhe, id):
     con.commit()
     con.close()
 
+def trocar_favorito(id):
+    con = conectar()
+    
+    con.cursor().execute(
+            "UPDATE note SET favoritado = NOT favoritado WHERE id = ?",
+            (id,)
+        )
+    con.commit()
+    con.close()
 
 def load_data(html):
     caminho = os.path.join(os.path.dirname(__file__), "static", "data", html)

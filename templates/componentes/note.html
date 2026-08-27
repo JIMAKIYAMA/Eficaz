@@ -1,4 +1,4 @@
-<li class='nota'>
+<li class='card'>
     <form action='/delete' method="post">
         <input type='hidden' name='id' value='{valor}'>
         <input type="submit" name="delete_button" value='Deletar'>
@@ -10,4 +10,9 @@
     </form>
     <h3>{title}</h3>
     <p>{note}</p>
+
+    <form class='boca' action='/favoritar/{id_editar}' method="post">
+        <input type='hidden' value='{valor}'>
+        <input type="submit" name="favorite_button" value='{favorito}'>
+    </form>
 </li>

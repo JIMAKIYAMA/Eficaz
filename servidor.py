@@ -1,6 +1,6 @@
 from flask import Flask, render_template_string, redirect, request, render_template
 import views
-from utils import inserir, deletar, editar
+from utils import inserir, deletar, editar, trocar_favorito
 
 app = Flask(__name__)
 
@@ -35,6 +35,12 @@ def editar_(id):
         editar(title, content, id)
         return redirect('/')
     return render_template('edicao.html',id_editar=id)
+
+@app.route('/favoritar/<int:id>', methods=['POST'])
+def favoritar(id):
+    trocar_favorito(id)
+    return redirect('/')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
