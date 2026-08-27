@@ -26,8 +26,8 @@ def delete():
 
 @app.route('/editar/<int:id>', methods=['POST','GET'])
 def editar_(id):
-    title = request.form.get('title')
-    content = request.form.get('content')
+    title = request.form.get('titulo')
+    content = request.form.get('detalhes')
     if title and content and id:
         editar(title, content, id)
         return redirect('/')

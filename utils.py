@@ -1,47 +1,45 @@
-import json
 import os
 import sqlite3
+import json
 
-def criar_banco_de_dados():
-    con = sqlite3.connect('banco.db')
-    cursor = con.cursor()
-    cursor.execute("CREATE TABLE banco (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, content TEXT)")
-    con.commit()
-    return con
+def conectar():
+    return sqlite3.connect('banco.db')
 
 def inserir(dados):
-    con = sqlite3.connect('banco.db')
-    cursor = con.cursor()
-    cursor.execute("""
-    INSERT INTO banco (title, content) VALUES(?,?)
-    """, dados)
+    con = conectar()
+    con.cursor().execute("INSERT INTO note (title, content) VALUES (?, ?)", dados)
     con.commit()
+    con.close()
 
 def pegar_dados():
-    con = sqlite3.connect('banco.db')
-    cursor = con.cursor()
-    res = cursor.execute("SELECT id, title, content FROM banco")
+    con = conectar()
+    res = con.cursor().execute("SELECT id, title, content FROM note").fetchall()
+    con.close()
+    return res
 
-    return res.fetchall()
+def pegar_nota(id):
+    con = conectar()
+    res = con.cursor().execute(
+        "SELECT id, title, content FROM note WHERE id = ?", (id,)
+    ).fetchone()
+    con.close()
+    return res
 
 def deletar(id):
-    con = sqlite3.connect('banco.db')
-    cursor = con.cursor()
-    cursor.execute('DELETE FROM banco WHERE id = ?',(id,))
+    con = conectar()
+    con.cursor().execute("DELETE FROM note WHERE id = ?", (id,))
     con.commit()
     con.close()
 
 def editar(titulo, detalhe, id):
-    con = sqlite3.connect('banco.db')
-    cursor = con.cursor()
-    cursor.execute(
-    """
-    UPDATE banco SET title= ?, content = ? WHERE id = ?;
-    """,
-    (titulo, detalhe, id)
-    ) 
+    con = conectar()
+    con.cursor().execute(
+        "UPDATE note SET title = ?, content = ? WHERE id = ?",
+        (titulo, detalhe, id)
+    )
     con.commit()
     con.close()
+
 
 def load_data(html):
     caminho = os.path.join(os.path.dirname(__file__), "static", "data", html)
