@@ -1,0 +1,13 @@
+<li class='nota'>
+    <form action='/delete' method="post">
+        <input type='hidden' name="delete_button" value='{valor}'>
+        <input type="submit" value='Deletar'>
+    </form>
+    <br>
+    <form action='/editar/{id_editar}' method="get">
+        <input type='hidden' name="edit_button" value='{valor}'>
+        <input type="submit" value='Editar'>
+    </form>
+    <h3>{title}</h3>
+    <p>{note}</p>
+</li>

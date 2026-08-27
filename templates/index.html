@@ -6,9 +6,12 @@
     </head>
     <body>
         <header class="header">
-            <div> {imagem} </div>
+            <div>
+                <img class='img' src ='/static/img/logo-getit.png'>     
+            </div>
             <p>Como o Post-it, mas com outro verbo</p>
         </header>
+        <div class="editarcss">
             <form class="caixinha" action="/submit" method="POST">
                 <label for="titulo">Titulo</label>
                 <input id="titulo" type="text" name="titulo">
@@ -16,6 +19,7 @@
                 <input id="detalhes" type="text" name="detalhes">
                 <input type="submit">
             </form>
+        </div>
         <ul>
             {notes}
         </ul>
