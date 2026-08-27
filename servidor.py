@@ -1,10 +1,12 @@
 from flask import Flask, render_template_string, redirect, request, render_template
 import views
-from utils import inserir, deletar, editar, pegar_nota, trocar_favorito
+from utils import inserir, deletar, editar, pegar_nota, trocar_favorito, criar_banco_de_dados
 
 app = Flask(__name__)
 
 app.static_folder = 'static'
+
+criar_banco_de_dados()
 
 @app.route('/')
 def index():

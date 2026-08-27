@@ -2,8 +2,28 @@ import os
 import sqlite3
 import json
 
+caminho = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'banco.db')
+
 def conectar():
-    return sqlite3.connect('banco.db')
+    return sqlite3.connect(caminho)
+
+def criar_banco_de_dados():
+    con = conectar()
+    cur = con.cursor()
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS note (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT,
+            content TEXT,
+            favoritado INTEGER DEFAULT 0
+        )
+    """)
+    colunas = [c[1] for c in cur.execute("PRAGMA table_info(note)").fetchall()]
+    if 'favoritado' not in colunas:
+        cur.execute("ALTER TABLE note ADD COLUMN favoritado INTEGER DEFAULT 0")
+    con.commit()
+    con.close()
+
 
 def inserir(dados):
     con = conectar()
@@ -13,7 +33,9 @@ def inserir(dados):
 
 def pegar_dados():
     con = conectar()
-    res = con.cursor().execute("SELECT * FROM note ORDER BY favoritado DESC").fetchall()
+    res = con.cursor().execute(
+        "SELECT id, title, content, favoritado FROM note ORDER BY favoritado DESC"
+    ).fetchall()
     con.close()
     return res
 
