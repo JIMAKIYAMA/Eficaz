@@ -28,6 +28,9 @@ def delete():
 def editar_(id):
     title = request.form.get('titulo')
     content = request.form.get('detalhes')
+    cancelar = request.form.get('Cancelar')
+    if cancelar:
+        return redirect('/')
     if title and content and id:
         editar(title, content, id)
         return redirect('/')
