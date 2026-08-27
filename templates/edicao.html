@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
     <head>
         <meta charset="UTF-8">
         <title>Get-it</title>
@@ -6,22 +7,24 @@
     </head>
     <body>
         <header class="header">
-            <div> 
-                <img class='img' src ='static/img/logo-getit.png'>
+            <div>
+                <img class='img' src='/static/img/logo-getit.png'>
             </div>
             <p>Como o Post-it, mas com outro verbo</p>
         </header>
-            <div class="editarcss">
-                <h2 class="titulo_editar">EDITAR</h3>
-                <form class="caixinha" action="/editar/{{ id_editar }}" method="post">
-                    <label for="titulo">Titulo</label>
-                    <input id="titulo" type="text" name="titulo">
-                    <label for="detalhe">Detalhe</label>
-                    <input id="detalhes" type="text" name="detalhes">
-                    <input type="submit">
-                    <label for="Cancelar"></label>
-                    <input id="Cancelar" type="submit" name="edit_cancel" value="Cancelar">
-                </form>
-            </div>
+        <div class="editarcss">
+            <h2 class="titulo_editar">EDITAR</h2>
+            <form class="caixinha" action="/update" method="post">
+                <input type="hidden" name="id" value="{{ nota[0] }}">
+                <label for="titulo">Titulo</label>
+                <input id="titulo" type="text" name="titulo" value="{{ nota[1] }}">
+                <label for="detalhes">Detalhe</label>
+                <input id="detalhes" type="text" name="detalhes" value="{{ nota[2] }}">
+                <input type="submit" value="Salvar">
+            </form>
+            <form action="/" method="get">
+                <input type="submit" value="Cancelar">
+            </form>
+        </div>
     </body>
-<html>
+</html>

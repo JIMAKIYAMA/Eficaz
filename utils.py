@@ -23,7 +23,6 @@ def pegar_nota(id):
         "SELECT id, title, content FROM note WHERE id = ?", (id,)
     ).fetchone()
     con.close()
-    res = ordenar()
     return res
 
 def deletar(id):

@@ -1,6 +1,6 @@
 from flask import Flask, render_template_string, redirect, request, render_template
 import views
-from utils import inserir, deletar, editar, trocar_favorito
+from utils import inserir, deletar, editar, pegar_nota, trocar_favorito
 
 app = Flask(__name__)
 
@@ -24,17 +24,16 @@ def delete():
         deletar(id)
     return redirect('/')
 
-@app.route('/editar/<int:id>', methods=['POST','GET'])
-def editar_(id):
-    title = request.form.get('titulo')
-    content = request.form.get('detalhes')
-    cancelar = request.form.get('Cancelar')
-    if cancelar:
-        return redirect('/')
-    if title and content and id:
-        editar(title, content, id)
-        return redirect('/')
-    return render_template('edicao.html',id_editar=id)
+@app.route('/update/<int:id>', methods=['GET'])
+def pagina_edicao(id):
+    nota = pegar_nota(id)
+    return render_template('edicao.html', nota=nota)
+
+@app.route('/update', methods=['POST'])
+def salvar_edicao():
+    id = request.form.get('id')
+    editar(request.form.get('titulo'), request.form.get('detalhes'), id)
+    return redirect('/')
 
 @app.route('/favoritar/<int:id>', methods=['POST'])
 def favoritar(id):
