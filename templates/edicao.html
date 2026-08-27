@@ -13,18 +13,18 @@
             <p>Como o Post-it, mas com outro verbo</p>
         </header>
         <div class="editarcss">
-            <h2 class="titulo_editar">EDITAR</h2>
-            <form class="caixinha" action="/update" method="post">
-                <input type="hidden" name="id" value="{{ nota[0] }}">
-                <label for="titulo">Titulo</label>
-                <input id="titulo" type="text" name="titulo" value="{{ nota[1] }}">
-                <label for="detalhes">Detalhe</label>
-                <input id="detalhes" type="text" name="detalhes" value="{{ nota[2] }}">
-                <input type="submit" value="Salvar">
-            </form>
-            <form action="/" method="get">
-                <input type="submit" value="Cancelar" name="edit_cancel">
-            </form>
-        </div>
+    <h2 class="titulo_editar">EDITAR</h2>
+    <form class="caixinha" action="/update" method="post">
+        <input type="hidden" name="id" value="{{ nota[0] }}">
+        <label for="titulo">Titulo</label>
+        <input id="titulo" type="text" name="titulo" value="{{ nota[1] }}">
+        <label for="detalhes">Detalhe</label>
+        <input id="detalhes" type="text" name="detalhes" value="{{ nota[2] }}">
+        <button type="submit">Salvar</button>
+    </form>
+    <form action="/" method="get">
+        <button type="submit">Cancelar</button>
+    </form>
+</div>
     </body>
 </html>
